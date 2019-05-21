@@ -34,12 +34,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-class>kr.or.ddit.servlet.guguServlet</servlet-class>
-		<servlet-name>guguServlet</servlet-name>
+		<servlet-class>kr.or.ddit.TimeServlet</servlet-class>
+		<servlet-name>timeServlet</servlet-name>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>guguServlet</servlet-name>
-		<url-pattern>/gugudan</url-pattern>
+		<servlet-name>timeServlet</servlet-name>
+		<url-pattern>/time</url-pattern>
 	</servlet-mapping>
 </web-app>
