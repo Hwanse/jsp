@@ -30,5 +30,8 @@
 
 	<img src="<%=request.getContextPath()%>/img/ryan.png">
 
+	<%-- 파라미터 받기 --%>
+	request.getParameter("targetName") : <%=request.getParameter("targetName") %> <br>
+
 </body>
 </html>
