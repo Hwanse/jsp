@@ -26,7 +26,7 @@
     <div class="container">
 
       <form class="form-signin" 
-      		action="<%=request.getContextPath() %>/login/loginProcess.jsp"
+      		action="<%=request.getContextPath() %>/login"
       		method="post">
         
         <h2 class="form-signin-heading">Please sign in</h2>
@@ -34,8 +34,8 @@
         <label for="userId" class="sr-only">userId</label>
         <input type="text" id="userId" name="userId" class="form-control" placeholder="userId" required autofocus>
         
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
         
         <div class="checkbox">
           <label>
