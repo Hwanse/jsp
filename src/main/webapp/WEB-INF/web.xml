@@ -9,42 +9,32 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
-  <!-- 초기화 파라미터 (파라미터를 초기화 해줌) -->
   <context-param>
-  	<param-name>ADMIN</param-name>
-  	<param-value>brown</param-value>
+    <param-name>ADMIN</param-name>
+    <param-value>brown</param-value>
   </context-param>
-
-
   <servlet>
     <servlet-name>basicServlet</servlet-name>
     <servlet-class>kr.or.ddit.servlet.BasicServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>basicServlet</servlet-name>
     <url-pattern>/bs</url-pattern>
   </servlet-mapping>
- 
   <servlet>
     <servlet-name>dateServlet</servlet-name>
     <servlet-class>kr.or.ddit.servlet.DateServlet</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>dateServlet</servlet-name>
     <url-pattern>/nowDate</url-pattern>
   </servlet-mapping>
- 
   <servlet>
     <servlet-name>timeServlet</servlet-name>
     <servlet-class>kr.or.ddit.TimeServlet</servlet-class>
   </servlet>
- 
   <servlet-mapping>
     <servlet-name>timeServlet</servlet-name>
     <url-pattern>/time</url-pattern>
   </servlet-mapping>
-
 </web-app>

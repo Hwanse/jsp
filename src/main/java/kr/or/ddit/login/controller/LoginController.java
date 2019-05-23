@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import kr.or.ddit.user.model.UserVO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,10 +52,18 @@ public class LoginController extends HttpServlet {
 		// /login/login.jsp 로 위임 --> 서버상에 별도의 상태 변경을 가하는 요청이 아니기
 		// 								때문에 dispatch방식으로 위임
 		
-		request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 //		== RequestDispatcher rd = request.getRequestDispatcher("/login/login.jsp");
 //		   rd.forward(request, response);
 		
+		
+//		UserVO SESSION_USER = (UserVO) request.getSession().getAttribute("USER_INFO");
+		
+		// session에 사용자 정보가 있을 경우 --> main화면으로 이동
+		if( request.getSession().getAttribute("USER_INFO") != null){
+			request.getRequestDispatcher("/main.jsp").forward(request, response);
+		} else{		// session에 사용자 정보가 없을 경우 --> 기존 로직
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+		}
 		
 	}
 
@@ -75,15 +86,22 @@ public class LoginController extends HttpServlet {
 		
 		// 일치하면 (로그인 성공) : main화면으로 이동
 		if(userId.equals("brown") && password.equals("brown1234")){
+			
+			// session에 사용자 정보를 넣어준다(사용 빈도가 높기 때문에)
+			HttpSession session = request.getSession();
+			
+			// 일반적으로 session에 속성값의 name으로는 대문자 형식으로 줌
+			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰") );
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
-			
+		
 		} else{	// 불일치하면 (로그인 실패- id 또는 pw 잘 못 입력) : 로그인 화면으로 이동
 			// 로그인 화면으로 이동 : localhost/jsp/login
 			// 현상황에서 /jsp/login url로 dispatch방식으로 위임이 불가
 			// request.getMethod(); // GET, POST
 			
-			response.sendRedirect(request.getContextPath() + "/jsp/login");
+			response.sendRedirect(request.getContextPath() + "/login");
 			
 		}
 		
