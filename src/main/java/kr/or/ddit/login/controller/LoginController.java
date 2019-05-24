@@ -91,7 +91,7 @@ public class LoginController extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			// 일반적으로 session에 속성값의 name으로는 대문자 형식으로 줌
-			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰") );
+			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰", "") );
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);

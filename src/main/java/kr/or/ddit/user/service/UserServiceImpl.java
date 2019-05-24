@@ -3,6 +3,10 @@ package kr.or.ddit.user.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
+import kr.or.ddit.user.dao.IUserDao;
+import kr.or.ddit.user.dao.UserDaoImpl;
 import kr.or.ddit.user.model.UserVO;
 
 public class UserServiceImpl implements IUserService{
@@ -18,18 +22,18 @@ public class UserServiceImpl implements IUserService{
 	 */
 	@Override
 	public List<UserVO> userList() {
-		
-		// db에서 데이터를 조회했다고 가정
-		List<UserVO> userList = new ArrayList<UserVO>();
-		
-		// 브라운, 샐리, 제임스
-		userList.add( new UserVO("브라운","brown","곰") );
-		userList.add( new UserVO("코니","cony","토끼") );
-		userList.add( new UserVO("샐리","sally","병아리") );
-		userList.add( new UserVO("제임스","james","사람") );
-		userList.add( new UserVO("문","moon","달") );
-		
+		IUserDao userDao = new UserDaoImpl();
+		List<UserVO> userList = userDao.userList();
 		return userList;
 	}
 
+	@Override
+	public UserVO getUser(String id) {
+		IUserDao userDao = new UserDaoImpl();
+		UserVO vo = userDao.getUser(id);
+		
+		return vo;
+	}
+
+	
 }

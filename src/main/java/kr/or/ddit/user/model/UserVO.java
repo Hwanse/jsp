@@ -4,16 +4,27 @@ public class UserVO {
 	private String name;
 	private String userId;
 	private String alias;
+	private String pass;
 	
 	public UserVO(){
 		
 	}
 	
-	public UserVO(String name, String userId, String alias) {
+	public UserVO(String name, String userId, String alias, String pass) {
 		this.name = name;
 		this.userId = userId;
 		this.alias = alias;
+		this.pass = pass;
 	}
+	
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	public String getName() {
 		return name;
 	}

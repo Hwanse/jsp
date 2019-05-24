@@ -19,13 +19,18 @@ public class UserDaoImpl implements IUserDao{
 		// gwt입력 + ctrl + space ==> 아래와 같은 주석이 달린다.
 		/***Given***/
 		IUserDao userDao = new UserDaoImpl();
+		String userId = "brown";
 
 		/***When***/
 		List<UserVO> userList = userDao.userList();
-	
+		UserVO userInfo = userDao.getUser(userId);
+
 		/***Then***/
 		logger.debug("userList : {} ", userList);
+		logger.debug("userInfo - ( id = {} , name = {} ,pw = {} , alias = {} )" , userInfo.getUserId()
+				, userInfo.getName(), userInfo.getPass(), userInfo.getAlias() );
 		
+
 	}
 	
 	/**
@@ -44,6 +49,14 @@ public class UserDaoImpl implements IUserDao{
 	
 		return userList;
 	}
-	
+
+	@Override
+	public UserVO getUser(String userId) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		
+		UserVO userInfo = sqlSession.selectOne("getUser", userId);
+		
+		return userInfo;
+	}
 	
 }
