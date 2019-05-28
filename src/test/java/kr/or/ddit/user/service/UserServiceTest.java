@@ -3,7 +3,9 @@ package kr.or.ddit.user.service;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.dao.IUserDao;
 import kr.or.ddit.user.model.UserVO;
 
@@ -62,4 +64,39 @@ public class UserServiceTest {
 		assertNotNull(userVO);
 		logger.debug("user name : {}", userVO.getName());
 	}
+	
+	
+	@Test
+	public void userPagingListTest(){
+		
+		/***Given***/
+		PageVO pageVO = new PageVO(1, 10);
+
+		/***When***/
+		Map<String, Object> resultMap = userService.userPagingList(pageVO);
+		List<UserVO> userList = (List<UserVO>) resultMap.get("userList");
+		int	paginationSize = (Integer)resultMap.get("paginationSize");
+		/***Then***/
+
+		assertNotNull(userList);
+		assertEquals(10, userList.size());
+		assertEquals(11, paginationSize);
+	}
+	
+	@Test
+	public void ceilTest(){
+		
+		/***Given***/
+		int usersCnt = 105;
+		int pageSize = 10;
+		
+		/***When***/
+		double paginationSize = Math.ceil( (double)usersCnt / pageSize);
+		logger.debug("paginationSize : {} " , paginationSize);
+		
+		/***Then***/
+		assertEquals(11, (int)paginationSize);
+		
+	}
+	
 }

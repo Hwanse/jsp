@@ -1,7 +1,14 @@
 package kr.or.ddit.user.service;
 
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Test;
+
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
 
 public interface IUserService {
@@ -27,4 +34,15 @@ public interface IUserService {
 	* Method 설명 : 사용자 정보 조회
 	 */
 	public UserVO getUser(String id);
+	
+	/**
+	 * 
+	* Method : userPagingListTest
+	* 작성자 : PC14
+	* 변경이력 :
+	* Method 설명 : 사용자 페이징 리스트 조회 테스트
+	 */
+	public Map<String, Object> userPagingList(PageVO pageVO);
+	
+	
 }
