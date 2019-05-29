@@ -7,6 +7,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,19 +57,15 @@
 							
 								<%
 									Map<String,Object> resultMap = (Map<String,Object>)request.getAttribute("userPage");
-									
-									List<UserVO> userList = (List<UserVO>)resultMap.get("userList");
-								
-									for(int i=0; i < userList.size(); i++){	
-										UserVO tmp = userList.get(i);
-									%>
+								%>
+									<c:forEach items="${userList }" var="user">
 										<tr>
-											<td><%=tmp.getName() %></td>										
-											<td><%=tmp.getUserId() %></td>										
-											<td><%=tmp.getAlias() %></td>
+											<td>${user.userId }</td>										
+											<td>${user.name }</td>										
+											<td>${user.alias }</td>										
 											<td><%=LocalDate.now() %></td>										
 										</tr>
-								<% } %>
+									</c:forEach>
 
 							</table>
 						</div>
@@ -86,7 +83,7 @@
 									<%
 									}else{%>
 										<li class="previous">
-											<a href="<%=request.getContextPath() %>/userPagingList?page=<%=pageVO.getPage()-1 %>&pageSize=<%=pageVO.getPageSize() %>">«</a>
+											<a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVO.getPage()-1 %>&pageSize=<%=pageVO.getPageSize() %>">«</a>
 										</li>
 								  <%} %>
 								<% 
@@ -111,8 +108,7 @@
 										<% 		continue; 
 											} %>
 											
-										<li><a href="<%=request.getContextPath() %>
-										/userPagingList?page=<%=i %>&pageSize=<%=pageVO.getPageSize() %>"><%=i %></a></li>
+										<li><a href="${pageContext.request.contextPath}/userPagingList?page=<%=i %>&pageSize=<%=pageVO.getPageSize() %>"><%=i %></a></li>
 								<% 	} %>
 								
 								<% if(pageVO.getPage() == pageLength){%>
@@ -121,7 +117,7 @@
 									</li>	
 								 <%} else{%>
 								 	<li class="next">
-								 		<a href="<%=request.getContextPath() %>/userPagingList?page=<%=pageVO.getPage() +1 %>&pageSize=<%=pageVO.getPageSize() %>">»</a>
+								 		<a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVO.getPage() +1 %>&pageSize=<%=pageVO.getPageSize() %>">»</a>
 								 	</li>
 								 <%} %>		
 							</ul>

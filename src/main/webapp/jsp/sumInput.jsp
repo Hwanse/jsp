@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	<form action="<%=request.getContextPath() %>/sumCalculation" method="post">
+	<form action="${pageContext.request.contextPath}/sumCalculation" method="post">
 		
 		start <input type="text" name="startParam"/> <br>
 		end <input type="text" name="endParam"/><br>
