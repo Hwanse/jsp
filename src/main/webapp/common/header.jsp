@@ -1,7 +1,7 @@
 <%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -11,7 +11,15 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">JSP/SPRING ${USER_INFO.name}	 	 
+			<a class="navbar-brand" href="#">JSP/SPRING 
+				<c:choose>
+					<c:when test="${empty USER_INFO }">
+						접속 전입니다.
+					</c:when>
+					<c:when test="${!empty USER_INFO}">
+						${USER_INFO.name }
+					</c:when>
+				</c:choose>	
 			</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
