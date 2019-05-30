@@ -1,14 +1,8 @@
 package kr.or.ddit.user.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Test;
 
 import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.dao.IUserDao;

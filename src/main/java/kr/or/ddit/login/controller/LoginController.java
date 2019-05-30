@@ -57,13 +57,13 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("Logincontroller doGet()");
 
-		logger.debug("rememberme paramter : {}" ,  request.getParameter("rememberme"));
+//		logger.debug("rememberme paramter : {}" ,  request.getParameter("rememberme"));
 		
-		logger.debug("cookies : {}",request.getCookies());
+//		logger.debug("cookies : {}",request.getCookies());
 		
 		if(request.getCookies() != null){
 			for(Cookie cookie : request.getCookies()){
-				logger.debug("cookie : {}, {} ", cookie.getName(), cookie.getValue() );
+//				logger.debug("cookie : {}, {} ", cookie.getName(), cookie.getValue() );
 			}
 		}
 		
@@ -89,9 +89,9 @@ public class LoginController extends HttpServlet {
 
 	// 로그인 요청을 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.debug("rememberme parameter: {}", request.getParameter("rememberme"));
-		logger.debug("parameter userId :  {}", request.getParameter("userId") );
-		logger.debug("parameter password :  {}", request.getParameter("password") );
+//		logger.debug("rememberme parameter: {}", request.getParameter("rememberme"));
+//		logger.debug("parameter userId :  {}", request.getParameter("userId") );
+//		logger.debug("parameter password :  {}", request.getParameter("password") );
 		
 		// 사용자 파라미터 userId, password
 		String userId = request.getParameter("userId");

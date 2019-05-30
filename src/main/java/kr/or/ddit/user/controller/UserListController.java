@@ -33,7 +33,7 @@ import kr.or.ddit.user.service.UserServiceImpl;
 * </pre>
 */
 @WebServlet("/userList")
-public class UserController extends HttpServlet {
+public class UserListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private IUserService userService;
