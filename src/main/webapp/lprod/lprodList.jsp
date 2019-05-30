@@ -51,19 +51,7 @@
 									<th>Lprod_gu</th>
 									<th>상품분류명</th>
 								</tr>
-							
-								<%
-// 									List<LprodVO> allLprodList = (List<LprodVO>)request.getAttribute("allLprodList");
 								
-// 									for(int i=0; i < allLprodList.size(); i++){	
-// 										LprodVO tmp = allLprodList.get(i);
-									%>
-<!-- 										<tr> -->
-<%-- 											<td><%=tmp.getLprod_id() %></td>										 --%>
-<%-- 											<td><%=tmp.getLprod_gu() %></td>										 --%>
-<%-- 											<td><%=tmp.getLprod_nm() %></td> --%>
-<!-- 										</tr> -->
-								<%// } %>
 								<c:forEach items="${allLprodList }" var="lprodVO">
 									<tr>
 											<td>${lprodVO.lprod_id }</td>										

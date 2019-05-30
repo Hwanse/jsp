@@ -65,45 +65,6 @@
 
 						<div class="text-center">
 							<ul class="pagination" >
-								<%
-									//PageVO pageVO = (PageVO)request.getAttribute("pageVO");
-									
-									//if(pageVO.getPage() == 1){ %>
-<!-- 										<li class="previous disabled"> -->
-<!-- 											<span>«</span> -->
-<!-- 										</li> -->
-									<%
-									//}else{%>
-<!-- 										<li class="previous"> -->
-<%-- 											<a href="${pageContext.request.contextPath}/lprodPagingList?page=<%=pageVO.getPage()-1 %>&pageSize=<%=pageVO.getPageSize() %>">«</a> --%>
-<!-- 										</li> -->
-								  <%//} %>
-								<% 
-								
-// 									int usersCnt = (Integer)request.getAttribute("lprodsCnt");
-									
-// 									int pageLength = (Integer)request.getAttribute("paginationSize");
-									
-									//for(int i=1; i <= pageLength; i++){%>
-										<% //if( pageVO.getPage() == i ) {%>
-<!-- 												<li class = "active"> -->
-<%-- 													<span><%=i %></span> --%>
-<!-- 												</li> -->
-										<% 		//continue; 
-											//} %>
-											
-<%-- 										<li><a href="${pageContext.request.contextPath} --%>
-<%-- 										/lprodPagingList?page=<%=i %>&pageSize=<%=pageVO.getPageSize() %>"><%=i %></a></li> --%>
-								<% 	//} %>
-								<%// if(pageVO.getPage() == pageLength){%>
-<!-- 									<li class="next disabled"> -->
-<!-- 										<span>»</span> -->
-<!-- 									</li>	 -->
-								 <%//} else{%>
-<!-- 								 	<li class="next"> -->
-<%-- 								 		<a href="${pageContext.request.contextPath}/lprodPagingList?page=<%=pageVO.getPage() +1 %>&pageSize=<%=pageVO.getPageSize() %>">»</a> --%>
-<!-- 								 	</li> -->
-								 <%//} %>	
 								 
 							   <c:set var="pageVO" value="${pageVO }" />
 							   <c:choose>
@@ -121,7 +82,6 @@
 								  
 								<c:set var="lprodsCnt" value="${lprodsCnt }"/>
 								<c:set var="pageLenth" value="${paginationSize }"/>
-								
 								<c:forEach var="i" begin="1" end="${pageLenth }" step="1">
 									<c:choose>
 										<c:when test="${pageVO.page eq i }">
