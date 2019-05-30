@@ -50,19 +50,6 @@
 									<th>상품분류명</th>
 								</tr>
 							
-								<%
-// 									List<LprodVO> pagingList = (List<LprodVO>)request.getAttribute("lprodPagingList");
-									
-								
-// 									for(int i=0; i < pagingList.size(); i++){	
-// 										LprodVO tmp = pagingList.get(i);
-									%>
-<!-- 										<tr> -->
-<%-- 											<td><%=tmp.getLprod_id() %></td>										 --%>
-<%-- 											<td><%=tmp.getLprod_gu() %></td>										 --%>
-<%-- 											<td><%=tmp.getLprod_nm() %></td> --%>
-<!-- 										</tr> -->
-								<% //} %>
 								<c:forEach items="${lprodPagingList }" var="lprodVO">
 									<tr>
 										<td>${lprodVO.lprod_id }</td>										
@@ -93,9 +80,9 @@
 								  <%//} %>
 								<% 
 								
-									int usersCnt = (Integer)request.getAttribute("lprodsCnt");
+// 									int usersCnt = (Integer)request.getAttribute("lprodsCnt");
 									
-									int pageLength = (Integer)request.getAttribute("paginationSize");
+// 									int pageLength = (Integer)request.getAttribute("paginationSize");
 									
 									//for(int i=1; i <= pageLength; i++){%>
 										<% //if( pageVO.getPage() == i ) {%>
