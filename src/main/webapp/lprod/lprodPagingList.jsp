@@ -20,6 +20,24 @@
 <!-- css, js -->
 <%@include file="/common/basicLib.jsp" %>
 
+<style>
+	.lprodTr:hover{
+		cursor: pointer;
+	}
+</style>
+<script>
+	$(document).ready(function(){
+		
+		$(".lprodTr").on("click",function(){
+			var lprodId = $(this).data("lprodid");
+			
+			$("#lprodId").val(lprodId);
+			
+			$("#frm").submit();
+		});
+		
+	});
+</script>
 </head>
 
 <body>
@@ -42,6 +60,12 @@
 			<div class="row">
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">Lprod</h2>
+						
+						<form id="frm" action="${pageContext.request.contextPath }/lprod"
+							  method="get" >
+							<input type="hidden" id="lprodId" name="lprodId"/>
+						</form>
+						
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
@@ -51,8 +75,8 @@
 								</tr>
 							
 								<c:forEach items="${lprodPagingList }" var="lprodVO">
-									<tr>
-										<td>${lprodVO.lprod_id }</td>										
+									<tr class="lprodTr" data-lprodid="${lprodVO.lprod_id }">
+										<td class="lprodId">${lprodVO.lprod_id }</td>										
 										<td>${lprodVO.lprod_gu }</td>										
 										<td>${lprodVO.lprod_nm }</td>										
 									</tr>

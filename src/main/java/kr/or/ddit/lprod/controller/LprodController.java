@@ -8,39 +8,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.lprod.model.LprodVO;
 import kr.or.ddit.lprod.service.ILprodService;
 import kr.or.ddit.lprod.service.LprodServiceImpl;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Servlet implementation class LprodController
  */
-@WebServlet("/lprodList")
-public class LprodListController extends HttpServlet {
+@WebServlet("/lprod")
+public class LprodController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private static final Logger logger = LoggerFactory
-			.getLogger(LprodListController.class);
-	
-	private ILprodService service;
+    
+	private ILprodService lprodService;
 	
 	@Override
 	public void init() throws ServletException {
-		service = new LprodServiceImpl();
+		lprodService = new LprodServiceImpl();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		request.setAttribute("allLprodList", service.getAllLprodList());
+
+		String lprod_id = request.getParameter("lprodId");
 		
-		request.getRequestDispatcher("/lprod/lprodList.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	
+		LprodVO lprodVO = lprodService.getLprodInfo(lprod_id);
+		
+		request.setAttribute("SELECT_LPROD_INFO", lprodVO);
+		
+		request.getRequestDispatcher("/lprod/lprod.jsp").forward(request, response);
+		
 	}
 
 }

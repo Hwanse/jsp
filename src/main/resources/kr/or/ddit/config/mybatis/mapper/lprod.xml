@@ -10,6 +10,11 @@
 		FROM	LPROD
 	</select>
 	
+	<select id="getLprodInfo" parameterType="string" resultType="lprodVO">
+		SELECT	*
+		FROM	LPROD
+		WHERE	LPROD_ID = #{lprod_id}
+	</select>
 	
 	<select id="lprodPagingList" parameterType="pageVO" resultType="lprodVO">
 		<![CDATA[

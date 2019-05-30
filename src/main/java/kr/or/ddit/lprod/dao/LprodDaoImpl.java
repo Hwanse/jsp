@@ -37,4 +37,13 @@ public class LprodDaoImpl implements ILprodDao{
 		return pagingList;
 	}
 
+	@Override
+	public LprodVO getLprodInfo(String lprod_id) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		LprodVO lprodVO = sqlSession.selectOne("lprod.getLprodInfo", lprod_id);
+		
+		sqlSession.close();
+		return lprodVO;
+	}
+
 }

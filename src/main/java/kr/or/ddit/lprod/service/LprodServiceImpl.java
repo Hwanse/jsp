@@ -49,6 +49,12 @@ public class LprodServiceImpl implements ILprodService{
 		
 		return resultMap;
 	}
+
+	@Override
+	public LprodVO getLprodInfo(String lprod_id) {
+		LprodVO lprodVO = dao.getLprodInfo(lprod_id);
+		return lprodVO;
+	}
 	
 	
 }

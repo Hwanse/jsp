@@ -19,6 +19,16 @@ public interface ILprodDao {
 	
 	
 	/**
+	* Method : getLprodInfo
+	* 작성자 : PC14
+	* 변경이력 :
+	* @param lprod_id
+	* @return
+	* Method 설명 : 해당 lprod의 정보를 조회하기 위한 메서드
+	*/
+	public LprodVO getLprodInfo(String lprod_id);
+	
+	/**
 	 * 
 	* Method : lprodPagingList
 	* 작성자 : PC14
