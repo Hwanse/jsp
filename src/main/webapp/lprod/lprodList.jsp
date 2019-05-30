@@ -53,18 +53,24 @@
 								</tr>
 							
 								<%
-									List<LprodVO> allLprodList = (List<LprodVO>)request.getAttribute("allLprodList");
+// 									List<LprodVO> allLprodList = (List<LprodVO>)request.getAttribute("allLprodList");
 								
-									for(int i=0; i < allLprodList.size(); i++){	
-										LprodVO tmp = allLprodList.get(i);
+// 									for(int i=0; i < allLprodList.size(); i++){	
+// 										LprodVO tmp = allLprodList.get(i);
 									%>
-										<tr>
-											<td><%=tmp.getLprod_id() %></td>										
-											<td><%=tmp.getLprod_gu() %></td>										
-											<td><%=tmp.getLprod_nm() %></td>
+<!-- 										<tr> -->
+<%-- 											<td><%=tmp.getLprod_id() %></td>										 --%>
+<%-- 											<td><%=tmp.getLprod_gu() %></td>										 --%>
+<%-- 											<td><%=tmp.getLprod_nm() %></td> --%>
+<!-- 										</tr> -->
+								<%// } %>
+								<c:forEach items="${allLprodList }" var="lprodVO">
+									<tr>
+											<td>${lprodVO.lprod_id }</td>										
+											<td>${lprodVO.lprod_gu }</td>										
+											<td>${lprodVO.lprod_nm }</td>										
 										</tr>
-								<% } %>
-
+								</c:forEach>
 							</table>
 						</div>
 

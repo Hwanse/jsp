@@ -58,7 +58,7 @@
 										 pageContext.setAttribute("user", vo) 
 										 == [  var="user"  ] 
 										 -->
-									<c:forEach items="${userList }" var="user">
+									<c:forEach items="${userList }" var="user" varStatus="status">
 										<tr>
 											<td>${user.userId }</td>										
 											<td>${user.name }</td>										

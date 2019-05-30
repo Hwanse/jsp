@@ -61,7 +61,9 @@ public class PageController extends HttpServlet {
 //		logger.debug("Page  : {} , pageSize : {}", pageVO.getPage() , pageVO.getPageSize() );
 		request.setAttribute("userList", resultMap.get("userList") );
 		request.setAttribute("pageSize", pageVO.getPageSize());
-		request.setAttribute("userPage", userService.userPagingList(pageVO));
+//		request.setAttribute("userPage", userService.userPagingList(pageVO));
+		request.setAttribute("usersCnt", resultMap.get("usersCnt"));
+		request.setAttribute("paginationSize", resultMap.get("paginationSize"));
 		request.setAttribute("pageVO", pageVO);
 		// userList객체를 이용하여 사용자 화면을 생성하는 jsp
 		request.getRequestDispatcher("/user/pageUserList.jsp").forward(request, response);

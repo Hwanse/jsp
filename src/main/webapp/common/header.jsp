@@ -12,14 +12,25 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">JSP/SPRING 
+				<%-- <c:set var="userName" value="${USER_INFO.name }"/>
+				<c:if test="${userName == null }">
+					<c:set var="userName" value="접속하지 않은 사용자 입니다"/>
+				</c:if>
+				${userName } --%>
 				<c:choose>
-					<c:when test="${empty USER_INFO }">
+					<%-- <c:when test="${empty USER_INFO }">
 						접속 전입니다.
 					</c:when>
 					<c:when test="${!empty USER_INFO}">
 						${USER_INFO.name }
+					</c:when> --%>
+					<c:when test="${!empty USER_INFO }">
+						${USER_INFO.alias }
 					</c:when>
-				</c:choose>	
+					<c:otherwise>
+						접속 전입니다.
+					</c:otherwise>
+				</c:choose> 	
 			</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">

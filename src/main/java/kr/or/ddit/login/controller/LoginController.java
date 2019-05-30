@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVO;
+import kr.or.ddit.user.service.IUserService;
+import kr.or.ddit.user.service.UserServiceImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +45,13 @@ public class LoginController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
     
+	private IUserService service;
+	
+	@Override
+	public void init() throws ServletException {
+		service = new UserServiceImpl();
+	}
+	
 
 	// 사용자 로그인 화면 요청처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,8 +59,12 @@ public class LoginController extends HttpServlet {
 
 		logger.debug("rememberme paramter : {}" ,  request.getParameter("rememberme"));
 		
-		for(Cookie cookie : request.getCookies()){
-			logger.debug("cookie : {}, {} ", cookie.getName(), cookie.getValue() );
+		logger.debug("cookies : {}",request.getCookies());
+		
+		if(request.getCookies() != null){
+			for(Cookie cookie : request.getCookies()){
+				logger.debug("cookie : {}, {} ", cookie.getName(), cookie.getValue() );
+			}
 		}
 		
 		// login화면을 처리해줄 누군가?? 에게 위임
@@ -91,7 +104,10 @@ public class LoginController extends HttpServlet {
 		// --> userId: brown이고  password: brown1234라는 값일 때 통과, 그 이외 값은 불일치
 		
 		// 일치하면 (로그인 성공) : main화면으로 이동
-		if(userId.equals("brown") && password.equals("brown1234")){
+		
+		UserVO lookUpVO = service.getUser(userId);
+		
+		if( lookUpVO != null && lookUpVO.getPass().equals(password)){
 			
 			//remember 파라미터가 존재할 경우 userId, rememberme cookie 설정해준다.
 			//remember 파라미터가 존재하지 않을 경우 user, rememberme cookie를 삭제한다.
@@ -114,7 +130,7 @@ public class LoginController extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			// 일반적으로 session에 속성값의 name으로는 대문자 형식으로 줌
-			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰", "") );
+			session.setAttribute("USER_INFO", lookUpVO);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
