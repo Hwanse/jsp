@@ -40,4 +40,24 @@ public interface IUserService {
 	public Map<String, Object> userPagingList(PageVO pageVO);
 	
 	
+	/**
+	* Method : insertUser
+	* 작성자 : PC14
+	* 변경이력 :
+	* @param userVO
+	* @return
+	* Method 설명 : 사용자 등록
+	*/
+	int insertUser(UserVO userVO);
+	
+	/**
+	* Method : updateUser
+	* 작성자 : PC14
+	* 변경이력 :
+	* @param userVO
+	* @return
+	* Method 설명 : 사용자 정보 수정
+	*/
+	int updateUser(UserVO userVO);
+	
 }

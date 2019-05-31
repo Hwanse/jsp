@@ -23,7 +23,16 @@
 
 <!-- css, js -->
 <%@include file="/common/basicLib.jsp"%>
-
+<script>
+	$(document).ready(function(){
+		
+		$("#modBtn").on("click", function(){
+			
+			$("#frm").submit();
+		})
+		
+	});
+</script>
 </head>
 
 <body>
@@ -47,9 +56,11 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자상세</h2>
 
-						<form class="form-horizontal" role="form">
+						<form id="frm" class="form-horizontal" role="form"
+							  action="${pageContext.request.contextPath }/userModify"
+							  method="get">
 
-							<c:set var="vo" value="${SELECT_USER_INFO }" scope="request"/>
+							<c:set var="vo" value="${SELECT_USER_INFO }" scope="session"/>
 							
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
@@ -111,7 +122,7 @@
 
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button type="submit" class="btn btn-default">사용자 수정</button>
+									<button id="modBtn" type="button" class="btn btn-default">사용자 수정</button>
 								</div>
 							</div>
 						</form>

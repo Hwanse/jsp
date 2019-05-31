@@ -80,6 +80,21 @@ public class UserServiceImpl implements IUserService{
 		
 		return resultMap;
 	}
+
+	@Override
+	public int insertUser(UserVO userVO) {
+		IUserDao dao = new UserDaoImpl();
+		int result = dao.insertUser(userVO);
+		
+		return result;
+	}
+
+	@Override
+	public int updateUser(UserVO userVO) {
+		IUserDao dao = new UserDaoImpl();
+		int result = dao.updateUser(userVO);
+		return result;
+	}
 	
 	
 	

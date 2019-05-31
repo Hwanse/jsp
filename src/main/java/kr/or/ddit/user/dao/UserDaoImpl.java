@@ -90,6 +90,13 @@ public class UserDaoImpl implements IUserDao{
 		return userList;
 	}
 
+	/**
+	* Method : usersCnt
+	* 작성자 : PC14
+	* 변경이력 :
+	* @return
+	* Method 설명 : 총 사용자 인원수를 반환
+	*/
 	@Override
 	public int usersCnt() {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
@@ -97,6 +104,42 @@ public class UserDaoImpl implements IUserDao{
 		int usersCnt = sqlSession.selectOne("user.usersCnt");
 		sqlSession.close();
 		return usersCnt;
+	}
+
+	/**
+	* Method : insertUser
+	* 작성자 : PC14
+	* 변경이력 :
+	* @param userVO
+	* @return
+	* Method 설명 : 사용자등록
+	*/
+	@Override
+	public int insertUser(UserVO userVO) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int insertCnt = sqlSession.insert("user.insertUser", userVO);
+		
+		sqlSession.commit();
+		sqlSession.close();
+		return insertCnt;
+	}
+
+	@Override
+	public int deleteUser(String userId) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int deleteUser = sqlSession.delete("user.deleteUser", userId);
+		sqlSession.commit();
+		sqlSession.close();
+		return deleteUser;
+	}
+
+	@Override
+	public int updateUser(UserVO userVO) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int updateUser = sqlSession.update("user.updateUser", userVO);
+		sqlSession.commit();
+		sqlSession.close();
+		return updateUser;
 	}
 	
 }
