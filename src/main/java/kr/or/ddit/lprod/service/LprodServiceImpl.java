@@ -51,7 +51,7 @@ public class LprodServiceImpl implements ILprodService{
 	}
 
 	@Override
-	public LprodVO getLprodInfo(String lprod_id) {
+	public LprodVO getLprodInfo(int lprod_id) {
 		LprodVO lprodVO = dao.getLprodInfo(lprod_id);
 		return lprodVO;
 	}

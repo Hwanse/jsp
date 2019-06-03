@@ -10,7 +10,7 @@
 		FROM	LPROD
 	</select>
 	
-	<select id="getLprodInfo" parameterType="string" resultType="lprodVO">
+	<select id="getLprodInfo" parameterType="int" resultType="lprodVO">
 		SELECT	*
 		FROM	LPROD
 		WHERE	LPROD_ID = #{lprod_id}

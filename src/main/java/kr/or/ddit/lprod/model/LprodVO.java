@@ -6,7 +6,6 @@ public class LprodVO {
 	private String lprod_nm;
 
 	public LprodVO(int lprod_id, String lprod_gu, String lprod_nm) {
-		super();
 		this.lprod_id = lprod_id;
 		this.lprod_gu = lprod_gu;
 		this.lprod_nm = lprod_nm;

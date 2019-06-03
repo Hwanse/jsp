@@ -27,7 +27,7 @@ public interface ILprodService {
 	* @return
 	* Method 설명 : 해당 lprod의 정보를 조회하기 위한 메서드
 	*/
-	public LprodVO getLprodInfo(String lprod_id);
+	public LprodVO getLprodInfo(int lprod_id);
 	
 	/**
 	 * 

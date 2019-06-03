@@ -28,7 +28,7 @@ public class LprodController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String lprod_id = request.getParameter("lprodId");
+		int lprod_id = Integer.parseInt(request.getParameter("lprodId"));
 		
 		LprodVO lprodVO = lprodService.getLprodInfo(lprod_id);
 		
