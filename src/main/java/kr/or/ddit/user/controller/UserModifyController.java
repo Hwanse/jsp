@@ -1,26 +1,32 @@
 package kr.or.ddit.user.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.Part;
 
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
+import kr.or.ddit.util.PartUtil;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Servlet implementation class UserModifyController
  */
 @WebServlet("/userModify")
+@MultipartConfig(maxFileSize = 1024 * 1024 * 3, maxRequestSize = 1024 * 1024 * 15)
 public class UserModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,12 +46,14 @@ public class UserModifyController extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		UserVO vo = (UserVO) request.getSession().getAttribute("vo");
-		logger.debug("vo: {}", vo);
 		
-//		String birth = vo.getBirth().getYear()+1900 + "-" + vo.getBirth().getMonth() + "-" + vo.getBirth().getDate();
 		String birth = null;
-		birth = sdf.format(vo.getBirth());
-		logger.debug("birth :  {} ", birth);
+
+		if(vo.getBirth() == null){
+			birth = "";
+		} else{
+			birth = sdf.format(vo.getBirth());
+		}
 		request.setAttribute("birth", birth);
 		request.getRequestDispatcher("/user/userModify.jsp").forward(request, response);
 		
@@ -64,14 +72,40 @@ public class UserModifyController extends HttpServlet {
 		String zipcd = request.getParameter("zipcd");
 		String birth = request.getParameter("birth");
 		String pass = request.getParameter("pass");
-		String file = request.getParameter("filename");
-		int idx = file.lastIndexOf("\\");
-		String filename = file.substring(idx+1);
-		String path = "D:\\upload\\"+filename;
-
+//		String file = request.getParameter("filename");
+//		int idx = file.lastIndexOf("\\");
+//		String filename = file.substring(idx+1);
+//		String path = "D:\\upload\\"+filename;
+		
+		Part profile = request.getPart("profile");
+		
 		UserVO userVO = null;
 		try {
-			userVO = new UserVO(name, userId, alias, pass, addr1, addr2, zipcd, sdf.parse(birth), path, filename);
+			if( profile.getSize() > 0){
+				String contentDisposition = profile.getHeader("content-disposition");
+				String fileName = PartUtil.getFileName(contentDisposition);
+				String ext = PartUtil.getExt(fileName);
+				
+				String uploadPath = PartUtil.getUploadPath();
+				File uploadFolder = new File(uploadPath);
+				if(uploadFolder.exists()){
+					String filePath = uploadPath + File.separator + UUID.randomUUID().toString() + ext;
+
+					profile.write(filePath);
+					profile.delete();
+					userVO = new UserVO(name, userId, alias, pass, addr1, addr2, zipcd, sdf.parse(birth), filePath, fileName);
+				}
+				
+			} else{
+				UserVO lookupUserVO = userService.getUser(userId);
+				if(lookupUserVO != null){
+					userVO = new UserVO(name, userId, alias, pass, addr1, addr2, zipcd
+									, sdf.parse(birth), lookupUserVO.getPath(), lookupUserVO.getFilename());
+				
+				}
+				
+			}
+		
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -32,7 +32,9 @@
 			$("#frm").submit();
 		})
 		
+		$("#proImg").css( {"width":"250px", "height":"188" } );
 	});
+	
 </script>
 </head>
 
@@ -66,7 +68,7 @@
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 								<div class="col-sm-10">
-									<img src="${pageContext.request.contextPath }/profile?userId=${vo.userId }"/>
+									<img id="proImg" src="${pageContext.request.contextPath }/profile?userId=${vo.userId }"/>
 								</div>
 							</div>
 

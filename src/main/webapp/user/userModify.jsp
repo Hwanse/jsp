@@ -54,13 +54,37 @@
 		// 사용자 등록버튼 클릭 이벤트 핸들러
 		$("#userModBtn").on("click", function(){
 			//유효성 체크
+			if(isEmpty("#name", "이름을 입력해주세요.",1)){
+				return;
+			}
 			
+			if(isEmpty("#alias", "별명을 입력해주세요.")){
+				return;
+			}
+			if(isEmpty("#pass", "비밀번호를 입력해주세요", 1)){
+				return;
+			}
 			//여기까지 도달하면 유효성 검사완료(submit)
 			$("#frm").submit();
 		});
 		
-		
 	});
+	
+	function isEmpty(item, msg, isTrim){
+		if($(item) == null){
+			alert("검사하는 항목이 존재하지 않습니다.");
+			return true;
+		}
+		if(isTrim) $(item).val($(item).val().trim());
+		
+		if($(item).val().length == 0){
+			alert(msg);
+			$(item).focus();
+			return true;
+		}
+		
+		return false;
+	}
 	
 	function dataInit(){
 		$("#userId").val("userTest");		
@@ -99,12 +123,12 @@
 
 						<form id="frm" class="form-horizontal" role="form"
 							  action="${pageContext.request.contextPath }/userModify"
-							  method="post" >
+							  method="post" enctype="multipart/form-data">
 
 							<div class="form-group">
-								<label for="filename" class="col-sm-2 control-label">사용자 사진</label>
+								<label for="profile" class="col-sm-2 control-label">사용자 사진</label>
 								<div class="col-sm-10">
-									<input id="file" type="file" name="filename"/>
+									<input id="file" type="file" name="profile"/>
 								</div>
 							</div>
 
@@ -166,7 +190,7 @@
 								<label for="birth" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
 									<input type="date" class="form-control" id="birth"
-										name="birth" placeholder="생일" value="${vo.birthStr}">
+										name="birth" placeholder="생일" value="${birth}">
 								</div>
 							</div>
 

@@ -29,8 +29,8 @@
   	   ,#{addr2}
   	   ,#{zipcd}
   	   ,#{birth}
-  	   ,''
-  	   ,''
+  	   ,#{path, jdbcType=VARCHAR}
+  	   ,#{filename, jdbcType=VARCHAR}
   	)
   </insert>
   
@@ -46,7 +46,7 @@
   <select id="getUser" parameterType="string" resultType="userVO">
   	SELECT	*
   	FROM	USERS
-  	WHERE	USERID = #{userid}
+  	WHERE	USERID = #{userId}
   </select>
   
   <!-- 사용자 페이지 리스트 조회 -->
@@ -91,8 +91,8 @@
   		   ,ZIPCD = #{zipcd}
   		   ,BIRTH = #{birth}
   		   ,PASS = #{pass}
-  		   ,PATH = #{path}
-  		   ,FILENAME = #{filename}
+  		   ,PATH = #{path, jdbcType=VARCHAR}
+  		   ,FILENAME = #{filename, jdbcType=VARCHAR}
   	WHERE	USERID = #{userId}
   </update>
   

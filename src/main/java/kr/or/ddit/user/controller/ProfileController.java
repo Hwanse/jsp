@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -26,6 +30,9 @@ import kr.or.ddit.user.service.UserServiceImpl;
 public class ProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(ProfileController.class);
+	
 	private IUserService userService;
 	
 	@Override
@@ -41,10 +48,19 @@ public class ProfileController extends HttpServlet {
 		// 사용자 정보(path)를 조회
 		UserVO userVO = userService.getUser(userId);
 		
-		// path정보로 file을 읽어 들여서
 		ServletOutputStream sos = response.getOutputStream();
-		File file = new File(userVO.getPath());
-		FileInputStream fis = new FileInputStream(file);
+		FileInputStream fis = null;
+		String filePath = null;
+		
+		if(userVO.getPath() != null){
+			filePath = userVO.getPath();
+		} else{
+			logger.debug("noImage path : {}", getServletContext().getRealPath("/img/no_image.gif"));
+			filePath = getServletContext().getRealPath("/img/no_image.gif");
+		}
+
+		File file = new File(filePath);
+		fis = new FileInputStream(file);
 		
 		byte[] buffer = new byte[512];
 		
