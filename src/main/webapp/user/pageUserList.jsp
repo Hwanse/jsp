@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +84,7 @@
 									<th>사용자 아이디</th>
 									<th>사용자 이름</th>
 									<th>사용자 별명</th>
-									<th>등록일시</th>
+									<th>생년월일</th>
 								</tr>
 							
 								<%
@@ -94,7 +95,8 @@
 											<td class="userId">${user.userId }</td>										
 											<td>${user.name }</td>										
 											<td>${user.alias }</td>										
-											<td><%=LocalDate.now() %></td>										
+<%-- 											<td><%=LocalDate.now() %></td>										 --%>
+											<td><fmt:formatDate value="${user.birth }" pattern="yyyy.MM.dd"/></td>
 										</tr>
 									</c:forEach>
 

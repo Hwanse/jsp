@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -70,17 +71,18 @@ public class UserFormController extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		UserVO userVO = null;
-		try {
-			userVO = new UserVO(name, userId, alias, pass, addr1, addr2, zipcd,sdf.parse(birth));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 		// 사용자가 입력한 userId가 이미 존재하는 userId인지 체크
 		UserVO dbUser = userService.getUser(userId);
 
 		// 등록된 사용자가 아닌경우 --> 정상 입력이 가능한 상황
 		if (dbUser == null) {
 
+			try {
+				String encrytedPass = KISA_SHA256.encrypt(pass);
+				userVO = new UserVO(name, userId, alias, encrytedPass, addr1, addr2, zipcd,sdf.parse(birth));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			// profile 파일 업로드 처리
 			Part profile = request.getPart("profile");
 
@@ -107,7 +109,7 @@ public class UserFormController extends HttpServlet {
 				}
 				
 			} 
-
+			
 			if (userService.insertUser(userVO) > 0) {
 				response.sendRedirect(request.getContextPath()
 						+ "/userPagingList");

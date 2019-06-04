@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -64,19 +65,21 @@ public class UserModifyController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		String userId = request.getParameter("userId");
-		String name = request.getParameter("name");
-		String alias = request.getParameter("alias");
-		String addr1 = request.getParameter("addr1");
-		String addr2 = request.getParameter("addr2");
-		String zipcd = request.getParameter("zipcd");
-		String birth = request.getParameter("birth");
-		String pass = request.getParameter("pass");
-//		String file = request.getParameter("filename");
-//		int idx = file.lastIndexOf("\\");
-//		String filename = file.substring(idx+1);
-//		String path = "D:\\upload\\"+filename;
+		String userId 	= request.getParameter("userId");
+		String name 	= request.getParameter("name");
+		String alias 	= request.getParameter("alias");
+		String addr1 	= request.getParameter("addr1");
+		String addr2 	= request.getParameter("addr2");
+		String zipcd 	= request.getParameter("zipcd");
+		String birth 	= request.getParameter("birth");
 		
+		// 사용자가 보낸 평문 비밀번호 데이터
+		String pass 	= request.getParameter("pass");
+
+		// 암호화(SHA256방식) API가 적용된 비밀번호 
+		String encrytedPass = KISA_SHA256.encrypt(pass);
+		
+		logger.debug("name : {} ", name);
 		Part profile = request.getPart("profile");
 		
 		UserVO userVO = null;
@@ -93,13 +96,13 @@ public class UserModifyController extends HttpServlet {
 
 					profile.write(filePath);
 					profile.delete();
-					userVO = new UserVO(name, userId, alias, pass, addr1, addr2, zipcd, sdf.parse(birth), filePath, fileName);
+					userVO = new UserVO(name, userId, alias, encrytedPass, addr1, addr2, zipcd, sdf.parse(birth), filePath, fileName);
 				}
 				
 			} else{
 				UserVO lookupUserVO = userService.getUser(userId);
 				if(lookupUserVO != null){
-					userVO = new UserVO(name, userId, alias, pass, addr1, addr2, zipcd
+					userVO = new UserVO(name, userId, alias, encrytedPass, addr1, addr2, zipcd
 									, sdf.parse(birth), lookupUserVO.getPath(), lookupUserVO.getFilename());
 				
 				}

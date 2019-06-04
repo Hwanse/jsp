@@ -32,7 +32,6 @@
 			$("#frm").submit();
 		})
 		
-		$("#proImg").css( {"width":"250px", "height":"188" } );
 	});
 	
 </script>
