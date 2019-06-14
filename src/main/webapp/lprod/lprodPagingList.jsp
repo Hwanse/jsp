@@ -61,7 +61,7 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">Lprod</h2>
 						
-						<form id="frm" action="${pageContext.request.contextPath }/lprod"
+						<form id="frm" action="${cp }/lprod"
 							  method="get" >
 							<input type="hidden" id="lprodId" name="lprodId"/>
 						</form>
@@ -99,7 +99,7 @@
 							  	</c:when>
 							  	<c:otherwise>
 							  		<li class="previous">
-										<a href="${pageContext.request.contextPath}/lprodPagingList?page=${pageVO.page-1 }&pageSize=${pageVO.pageSize}">«</a>
+										<a href="${cp}/lprodPagingList?page=${pageVO.page-1 }&pageSize=${pageVO.pageSize}">«</a>
 									</li>
 							  	</c:otherwise>
 							   </c:choose>
@@ -114,7 +114,7 @@
 											</li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=${i }&pageSize=${pageVO.pageSize}">${i }</a></li>
+											<li><a href="${cp}/lprodPagingList?page=${i }&pageSize=${pageVO.pageSize}">${i }</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -127,7 +127,7 @@
 								 	</c:when>
 								 	<c:otherwise>
 								 		<li class="next">
-								 			<a href="${pageContext.request.contextPath}/lprodPagingList?page=${pageVO.page + 1 }&pageSize=${pageVO.pageSize }">»</a>
+								 			<a href="${cp}/lprodPagingList?page=${pageVO.page + 1 }&pageSize=${pageVO.pageSize }">»</a>
 								 		</li>
 								 	</c:otherwise>
 								 </c:choose>

@@ -73,7 +73,7 @@
 						<h2 class="sub-header">사용자</h2>
 						
 						<!-- 사용자 상세조회 : userId가 필요 -->
-						<form id="frm" action="${pageContext.request.contextPath }/user"
+						<form id="frm" action="${cp }/user"
 							  method="get">
 							  <input type="hidden" id="userId" name="userId"/>
 						</form>
@@ -103,7 +103,7 @@
 							</table>
 						</div>
 
-						<a href="${pageContext.request.contextPath }/userForm" class="btn btn-default pull-right">사용자 등록</a>
+						<a href="${cp }/userForm" class="btn btn-default pull-right">사용자 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination" >
@@ -116,7 +116,7 @@
 									<%
 									//}else{%>
 <!-- 										<li class="previous"> -->
-<%-- 											<a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVO.getPage()-1 %>&pageSize=<%=pageVO.getPageSize() %>">«</a> --%>
+<%-- 											<a href="${cp}/userPagingList?page=<%=pageVO.getPage()-1 %>&pageSize=<%=pageVO.getPageSize() %>">«</a> --%>
 <!-- 										</li> -->
 								  <%//}  
 								  %> 
@@ -145,7 +145,7 @@
 										<% 	//	continue; 
 											//} %>
 											
-<%-- 										<li><a href="${pageContext.request.contextPath}/userPagingList?page=<%=i %>&pageSize=<%=pageVO.getPageSize() %>"><%=i %></a></li> --%>
+<%-- 										<li><a href="${cp}/userPagingList?page=<%=i %>&pageSize=<%=pageVO.getPageSize() %>"><%=i %></a></li> --%>
 								<% 	//} %>
 								<%// if(pageVO.getPage() == pageLength){%>
 <!-- 									<li class="next disabled"> -->
@@ -153,7 +153,7 @@
 <!-- 									</li>	 -->
 								 <%//} else{%>
 <!-- 								 	<li class="next"> -->
-<%-- 								 		<a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVO.getPage() +1 %>&pageSize=<%=pageVO.getPageSize() %>">»</a> --%>
+<%-- 								 		<a href="${cp}/userPagingList?page=<%=pageVO.getPage() +1 %>&pageSize=<%=pageVO.getPageSize() %>">»</a> --%>
 <!-- 								 	</li> -->
 								 <%//} %>
 								
@@ -165,7 +165,7 @@
 									</c:when>
 									<c:otherwise>
 										<li class="previous">											
-											<a href="${pageContext.request.contextPath}/userPagingList?page=${pageVO.page-1 }&pageSize=${pageVO.pageSize}">«</a>
+											<a href="${cp}/userPagingList?page=${pageVO.page-1 }&pageSize=${pageVO.pageSize}">«</a>
 										</li>
 									</c:otherwise>
 								</c:choose>								 
@@ -180,7 +180,7 @@
 											</li>
 										</c:when>
 										<c:otherwise>															
-											<li><a href="${pageContext.request.contextPath}/userPagingList?page=${i }&pageSize=${pageVO.pageSize}">${i }</a></li>
+											<li><a href="${cp}/userPagingList?page=${i }&pageSize=${pageVO.pageSize}">${i }</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -193,7 +193,7 @@
 								 	</c:when>
 								 	<c:otherwise>
 								 		<li class="next">													
-								 			<a href="${pageContext.request.contextPath}/userPagingList?page=${pageVO.page + 1 }&pageSize=${pageVO.pageSize}">»</a>
+								 			<a href="${cp}/userPagingList?page=${pageVO.page + 1 }&pageSize=${pageVO.pageSize}">»</a>
 								 		</li>
 								 	</c:otherwise>
 								 </c:choose>		

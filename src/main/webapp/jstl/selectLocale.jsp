@@ -36,7 +36,7 @@
 <body>
 
 <h2></h2>
-<form id="frm" method="post" action="${pageContext.request.contextPath }/selectLocale">
+<form id="frm" method="post" action="${cp }/selectLocale">
 	<select id="language">
 			<option value="ko">한국어</option>
 			<option value="en">english</option>

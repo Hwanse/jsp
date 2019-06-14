@@ -14,12 +14,12 @@
 <title>사용자리스트</title>
 
 <!-- <script src="/js/jquery/jquery-1.12.4.js"></script> -->
-<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="${cp}/bootstrap/css/bootstrap.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+<script src="${cp}/bootstrap/js/bootstrap.js"></script>
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="${cp}/css/dashboard.css" rel="stylesheet">
+<link href="${cp}/css/blog.css" rel="stylesheet">
 </head>
 
 <body>
@@ -54,7 +54,7 @@
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
 		<li class="active"><a href="#">Main <span class="sr-only">(current)</span></a></li>
-		<li class="active"><a href="${pageContext.request.contextPath}/userList">사용자리스트</a></li>
+		<li class="active"><a href="${cp}/userList">사용자리스트</a></li>
 	</ul>
 </div><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				
